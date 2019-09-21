@@ -18,6 +18,7 @@ import dassem.app.resume.R
 import dassem.app.resume.model.Resume
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
+import kotlinx.android.synthetic.main.content_scrolling.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -56,6 +57,7 @@ class MainActivity : DaggerAppCompatActivity() {
             displayImage(it.profileImage)
 
             main_profileName.text = it.name
+            main_profileDescription.text = it.profile
         })
     }
 

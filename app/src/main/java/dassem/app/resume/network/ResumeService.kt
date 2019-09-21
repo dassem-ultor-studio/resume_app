@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 
 interface ResumeService {
-    @GET("bins/6unz9")
+    @GET("bins/1gbznh")
     fun getResume(): Single<Resume>
 }
