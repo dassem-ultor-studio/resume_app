@@ -22,7 +22,10 @@ import kotlinx.android.synthetic.main.content_main_profile_section.main_profileD
 import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri.fromParts
+import android.view.View
 import dassem.app.resume.R
+import kotlinx.android.synthetic.main.content_scrolling.*
+import kotlinx.android.synthetic.main.main_header_layout.*
 
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -55,6 +58,18 @@ class MainActivity : DaggerAppCompatActivity() {
         addResumeDataObserver()
         addErrorMessageObserver()
         addSendEmailObserver()
+        addProgressObserver()
+    }
+
+    private fun addProgressObserver() {
+        viewModel.progress.observe(this, Observer {
+            if (!it) {
+                main_headerLayout.visibility = View.VISIBLE
+                main_contentLayout.visibility = View.VISIBLE
+                main_contentLoadingIndicator.visibility = View.GONE
+                main_headerLoadingIndicator.visibility = View.GONE
+            }
+        })
     }
 
     private fun addSendEmailObserver() {
@@ -75,6 +90,9 @@ class MainActivity : DaggerAppCompatActivity() {
             displayImage(it.profileImage)
 
             main_profileName.text = it.name
+            main_phoneNumber.text = it.phone
+            main_emailAddress.text = it.email
+
             main_profileDescription.text = it.profile
             main_keyAchievementsDescription.text = it.keyAchievements.replace(";", "\n")
 

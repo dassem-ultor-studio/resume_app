@@ -26,10 +26,13 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
     val sendEmail: LiveData<String>
         get() = _sendEmail
 
+    private val _progress = MutableLiveData<Boolean>(true)
+    val progress: LiveData<Boolean>
+        get() = _progress
+
     init {
         resumeService.getResume()
             .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(disposables)
     }
@@ -40,6 +43,7 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
 
     private fun onSuccess(it: Resume) {
         _resume.postValue(it)
+        _progress.postValue(false)
     }
 
     private fun onError(error: Throwable) {
