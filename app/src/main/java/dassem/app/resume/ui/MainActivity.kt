@@ -16,6 +16,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import dassem.app.resume.R
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
+import kotlinx.android.synthetic.main.content_main_education_section.*
 import kotlinx.android.synthetic.main.content_main_employment_section.*
 import kotlinx.android.synthetic.main.content_main_key_achievements_section.*
 import kotlinx.android.synthetic.main.content_main_profile_section.*
@@ -68,6 +69,11 @@ class MainActivity : DaggerAppCompatActivity() {
             main_keyAchievementsDescription.text = it.keyAchievements.replace(";", "\n")
 
             employmentAdapter.items = it.employment
+
+            main_educationDate.text = it.education.dates
+            main_educationUniversity.text = it.education.university
+            main_educationCourse.text = it.education.course
+            main_educationKeyModules.text = it.education.keyModules
         })
     }
 

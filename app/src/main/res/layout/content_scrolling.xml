@@ -19,6 +19,8 @@
 
         <include layout="@layout/content_main_employment_section"/>
 
+        <include layout="@layout/content_main_education_section"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
