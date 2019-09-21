@@ -1,7 +1,6 @@
 package dassem.app.resume.ui
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,17 +12,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import dagger.android.support.DaggerAppCompatActivity
-import dassem.app.resume.R
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
 import kotlinx.android.synthetic.main.content_main_education_section.*
 import kotlinx.android.synthetic.main.content_main_employment_section.*
 import kotlinx.android.synthetic.main.content_main_interests_section.*
 import kotlinx.android.synthetic.main.content_main_key_achievements_section.*
-import kotlinx.android.synthetic.main.content_main_profile_section.*
 import kotlinx.android.synthetic.main.content_main_profile_section.main_profileDescription
-import kotlinx.android.synthetic.main.content_scrolling.*
 import javax.inject.Inject
+import android.content.Intent
+import android.net.Uri.fromParts
+import dassem.app.resume.R
+
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -39,9 +39,8 @@ class MainActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, modelFactory)[MainViewModel::class.java]
         setContentView(R.layout.activity_scrolling)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        main_emailButton.setOnClickListener {
+            viewModel.onEmailButtonClicked()
         }
 
         main_employmentList.apply {
@@ -55,6 +54,14 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun addObservers() {
         addResumeDataObserver()
         addErrorMessageObserver()
+        addSendEmailObserver()
+    }
+
+    private fun addSendEmailObserver() {
+        viewModel.sendEmail.observe(this, Observer {
+            val emailIntent = Intent(Intent.ACTION_SENDTO, fromParts("mailto", it, null))
+            startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email)))
+        })
     }
 
     private fun addErrorMessageObserver() {

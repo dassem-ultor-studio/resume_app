@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val resumeService: ResumeService) : ViewModel() {
+class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewModel() {
     private val disposables = CompositeDisposable()
 
     private val _resume = MutableLiveData<Resume>()
@@ -22,12 +22,20 @@ class MainViewModel @Inject constructor(private val resumeService: ResumeService
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
+    private val _sendEmail = MutableLiveData<String>()
+    val sendEmail: LiveData<String>
+        get() = _sendEmail
+
     init {
         resumeService.getResume()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::onSuccess, ::onError)
             .addTo(disposables)
+    }
+
+    fun onEmailButtonClicked() {
+        _sendEmail.value = _resume.value?.email
     }
 
     private fun onSuccess(it: Resume) {
