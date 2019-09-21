@@ -58,6 +58,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
             main_profileName.text = it.name
             main_profileDescription.text = it.profile
+            main_keyAchievementsDescription.text = it.keyAchievements.replace(";","\n")
         })
     }
 
