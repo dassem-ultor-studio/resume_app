@@ -4,5 +4,8 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="margin_padding_medium">16dp</dimen>
     <dimen name="margin_padding_large">32dp</dimen>
+    <dimen name="margin_padding_large_plus">32dp</dimen>
     <dimen name="profile_image_size">180dp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
 </resources>
