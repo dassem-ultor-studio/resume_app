@@ -35,7 +35,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, modelFactory)[MainViewModel::class.java]
         setContentView(R.layout.activity_scrolling)
-//        setSupportActionBar(toolbar)
+
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
