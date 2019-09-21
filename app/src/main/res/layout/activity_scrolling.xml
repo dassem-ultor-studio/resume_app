@@ -20,16 +20,45 @@
                 android:fitsSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:toolbarId="@+id/toolbar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:contentScrim="?attr/colorPrimary">
 
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_height="?attr/actionBarSize"
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax">
+
+                <ImageView
+                        android:id="@+id/main_profileImage"
+                        android:layout_height="@dimen/profile_image_size"
+                        android:layout_width="@dimen/profile_image_size"
+                        android:padding="@dimen/margin_padding_medium"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:adjustViewBounds="true"/>
+
+                <TextView
+                        android:id="@+id/main_profileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_marginStart="@dimen/margin_padding_medium"
+                        android:layout_marginTop="@dimen/margin_padding_large"
+                        app:layout_constraintTop_toTopOf="@id/main_profileImage"
+                        app:layout_constraintStart_toEndOf="@id/main_profileImage"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--<androidx.appcompat.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:layout_width="match_parent"-->
+            <!--app:layout_collapseMode="pin"-->
+            <!--app:popupTheme="@style/AppTheme.PopupOverlay"/>-->
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

@@ -9,8 +9,13 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
 import dagger.android.support.DaggerAppCompatActivity
 import dassem.app.resume.R
+import dassem.app.resume.model.Resume
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
 import javax.inject.Inject
@@ -26,19 +31,40 @@ class MainActivity : DaggerAppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, modelFactory)[MainViewModel::class.java]
         setContentView(R.layout.activity_scrolling)
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
 
-        viewModel.resume.observe(this, Observer {
-            Toast.makeText(this, "${it.education}", Toast.LENGTH_SHORT).show()
-        })
+        addObservers()
+    }
 
+    private fun addObservers() {
+        addResumeDataObserver()
+        addErrorMessageObserver()
+    }
+
+    private fun addErrorMessageObserver() {
         viewModel.errorMessage.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun addResumeDataObserver() {
+        viewModel.resume.observe(this, Observer {
+            displayImage(it.profileImage)
+
+            main_profileName.text = it.name
+        })
+    }
+
+    private fun displayImage(profileImage: String) {
+        Glide.with(this)
+            .load(profileImage)
+            .apply(RequestOptions.circleCropTransform())
+            .transition(withCrossFade())
+            .into(main_profileImage)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
