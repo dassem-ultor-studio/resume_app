@@ -24,6 +24,7 @@ import android.content.Intent
 import android.net.Uri.fromParts
 import android.view.View
 import dassem.app.resume.R
+import dassem.app.resume.model.Resume
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.main_header_layout.*
 
@@ -87,24 +88,32 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun addResumeDataObserver() {
         viewModel.resume.observe(this, Observer {
-            displayImage(it.profileImage)
-
-            main_profileName.text = it.name
-            main_phoneNumber.text = it.phone
-            main_emailAddress.text = it.email
+            loadHeaderSection(it)
 
             main_profileDescription.text = it.profile
-            main_keyAchievementsDescription.text = it.keyAchievements.replace(";", "\n")
+            main_keyAchievementsDescription.text = it.keyAchievements
 
             employmentAdapter.items = it.employment
 
-            main_educationDate.text = it.education.dates
-            main_educationUniversity.text = it.education.university
-            main_educationCourse.text = it.education.course
-            main_educationKeyModules.text = it.education.keyModules
+            loadEducationSection(it)
 
             main_interestsDescription.text = it.interests
         })
+    }
+
+    private fun loadEducationSection(it: Resume) {
+        main_educationDate.text = it.education.dates
+        main_educationUniversity.text = it.education.university
+        main_educationCourse.text = it.education.course
+        main_educationKeyModules.text = it.education.keyModules
+    }
+
+    private fun loadHeaderSection(it: Resume) {
+        displayImage(it.profileImage)
+
+        main_profileName.text = it.name
+        main_phoneNumber.text = it.phone
+        main_emailAddress.text = it.email
     }
 
     private fun displayImage(profileImage: String) {
