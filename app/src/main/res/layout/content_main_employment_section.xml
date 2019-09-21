@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_employmentSection"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_employmentSection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_padding_medium"
+        android:animateLayoutChanges="true"
         app:layout_constraintTop_toBottomOf="@id/main_keyAchievementsSection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/margin_padding_medium"
-        android:animateLayoutChanges="true" tools:showIn="@layout/content_scrolling">
+        tools:showIn="@layout/content_scrolling">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
