@@ -17,9 +17,7 @@
 
         <include layout="@layout/content_main_key_achievements_section"/>
 
-
-
-
+        <include layout="@layout/content_main_employment_section"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

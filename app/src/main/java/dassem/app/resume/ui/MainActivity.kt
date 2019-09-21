@@ -2,25 +2,23 @@ package dassem.app.resume.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import dagger.android.support.DaggerAppCompatActivity
 import dassem.app.resume.R
-import dassem.app.resume.model.Resume
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
+import kotlinx.android.synthetic.main.content_main_employment_section.*
 import kotlinx.android.synthetic.main.content_main_key_achievements_section.*
 import kotlinx.android.synthetic.main.content_main_profile_section.*
-import kotlinx.android.synthetic.main.content_scrolling.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -28,6 +26,8 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var modelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: MainViewModel
+
+    private val employmentAdapter by lazy { EmploymentAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,11 @@ class MainActivity : DaggerAppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+
+        main_employmentList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = employmentAdapter
         }
 
         addObservers()
@@ -60,7 +65,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
             main_profileName.text = it.name
             main_profileDescription.text = it.profile
-            main_keyAchievementsDescription.text = it.keyAchievements.replace(";","\n")
+            main_keyAchievementsDescription.text = it.keyAchievements.replace(";", "\n")
+
+            employmentAdapter.items = it.employment
         })
     }
 
