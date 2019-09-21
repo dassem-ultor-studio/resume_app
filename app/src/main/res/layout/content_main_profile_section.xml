@@ -21,8 +21,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/profile"
                 android:layout_margin="@dimen/text_margin"
-                android:textSize="22sp"
-                android:fontFamily="sans-serif-black"
+                style="@style/SansSerifBlack.Large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 

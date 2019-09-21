@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_keyAchievementsSection"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_keyAchievementsSection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/main_profileSection"
@@ -21,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/key_achievements"
                 android:layout_margin="@dimen/text_margin"
-                android:textSize="22sp"
-                android:fontFamily="sans-serif-black"
+                style="@style/SansSerifBlack.Large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
