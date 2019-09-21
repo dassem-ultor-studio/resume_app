@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Resume(
     @SerializedName("name") val name: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("phone") val phone: String,
     @SerializedName("profile_image") val profileImage: String,
     @SerializedName("profile") val profile: String,
     @SerializedName("key_achievements") val keyAchievements: String,
