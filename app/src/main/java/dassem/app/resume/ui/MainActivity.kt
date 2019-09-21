@@ -18,6 +18,8 @@ import dassem.app.resume.R
 import dassem.app.resume.model.Resume
 import dassem.app.resume.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
+import kotlinx.android.synthetic.main.content_main_key_achievements_section.*
+import kotlinx.android.synthetic.main.content_main_profile_section.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 import javax.inject.Inject
 
