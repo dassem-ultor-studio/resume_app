@@ -16,20 +16,6 @@ class MainViewModelTest {
 
     private lateinit var viewModel: MainViewModel
 
-    private fun dataSetup() {
-        resumeService = mock {
-            whenever(it.getResume()) doReturn Single.just(resume)
-        }
-        viewModel = MainViewModel(resumeService)
-    }
-
-    private fun errorSetup() {
-        resumeService = mock {
-            whenever(it.getResume()) doReturn Single.error(Throwable(errorMessage))
-        }
-        viewModel = MainViewModel(resumeService)
-    }
-
     @Test
     fun `when data is loaded progress is set to false`() {
         dataSetup()
@@ -52,6 +38,20 @@ class MainViewModelTest {
         assert(viewModel.sendEmail.value == emailAddress)
     }
 
+    private fun dataSetup() {
+        resumeService = mock {
+            whenever(it.getResume()) doReturn Single.just(resume)
+        }
+        viewModel = MainViewModel(resumeService)
+    }
+
+    private fun errorSetup() {
+        resumeService = mock {
+            whenever(it.getResume()) doReturn Single.error(Throwable(errorMessage))
+        }
+        viewModel = MainViewModel(resumeService)
+    }
+
     companion object {
         private const val emailAddress = "example@google.com"
         private const val errorMessage = "Not internet connection"
@@ -69,5 +69,4 @@ class MainViewModelTest {
                 interests = ""
             )
     }
-
 }
