@@ -25,13 +25,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideApiService(httpClient: OkHttpClient): ResumeService {
+    internal fun provideApiService(httpClient: OkHttpClient): ResumeAPI {
         return Retrofit.Builder()
             .client(httpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BuildConfig.API_URL)
             .build()
-            .create(ResumeService::class.java)
+            .create(ResumeAPI::class.java)
     }
 }

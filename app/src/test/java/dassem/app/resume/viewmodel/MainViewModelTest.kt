@@ -5,14 +5,15 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import dassem.app.resume.model.Education
 import dassem.app.resume.model.Resume
-import dassem.app.resume.network.ResumeService
+import dassem.app.resume.network.ResumeAPI
+import dassem.app.resume.viewmodel.MainViewModel.Companion.dataSourceId
 import io.reactivex.Single
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(InstantExecutorExtension::class, TestSchedulerExtension::class)
 class MainViewModelTest {
-    private lateinit var resumeService: ResumeService
+    private lateinit var resumeAPI: ResumeAPI
 
     private lateinit var viewModel: MainViewModel
 
@@ -39,17 +40,17 @@ class MainViewModelTest {
     }
 
     private fun dataSetup() {
-        resumeService = mock {
-            whenever(it.getResume()) doReturn Single.just(resume)
+        resumeAPI = mock {
+            whenever(it.getResume(dataSourceId)) doReturn Single.just(resume)
         }
-        viewModel = MainViewModel(resumeService)
+        viewModel = MainViewModel(resumeAPI)
     }
 
     private fun errorSetup() {
-        resumeService = mock {
-            whenever(it.getResume()) doReturn Single.error(Throwable(errorMessage))
+        resumeAPI = mock {
+            whenever(it.getResume(dataSourceId)) doReturn Single.error(Throwable(errorMessage))
         }
-        viewModel = MainViewModel(resumeService)
+        viewModel = MainViewModel(resumeAPI)
     }
 
     companion object {

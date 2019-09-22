@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dassem.app.resume.extensions.addTo
-import dassem.app.resume.network.ResumeService
+import dassem.app.resume.network.ResumeAPI
 import dassem.app.resume.utility.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewModel() {
+class MainViewModel @Inject constructor(resumeAPI: ResumeAPI) : ViewModel() {
     private val disposables = CompositeDisposable()
 
     private val _resume = MutableLiveData<Resume>()
@@ -31,7 +31,7 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
         get() = _progress
 
     init {
-        resumeService.getResume()
+        resumeAPI.getResume(dataSourceId)
             .subscribeOn(Schedulers.single())
             .subscribe(::onSuccess, ::onError)
             .addTo(disposables)
@@ -54,5 +54,9 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
 
     private fun onError(error: Throwable) {
         _errorMessage.postValue(error.message)
+    }
+
+    companion object {
+        const val dataSourceId = "18sht5"
     }
 }
