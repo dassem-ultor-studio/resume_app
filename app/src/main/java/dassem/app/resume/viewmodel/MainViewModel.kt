@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dassem.app.resume.extensions.addTo
 import dassem.app.resume.network.ResumeService
+import dassem.app.resume.utility.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -21,7 +22,7 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
-    private val _sendEmail = MutableLiveData<String>()
+    private val _sendEmail = SingleLiveEvent<String>()
     val sendEmail: LiveData<String>
         get() = _sendEmail
 
