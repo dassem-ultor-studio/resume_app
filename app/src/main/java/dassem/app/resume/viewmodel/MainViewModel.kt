@@ -41,6 +41,12 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
         _sendEmail.postValue(resume.value?.email)
     }
 
+    override fun onCleared() {
+        super.onCleared()
+
+        disposables.clear()
+    }
+
     private fun onSuccess(it: Resume) {
         _resume.postValue(it)
         _progress.postValue(false)
@@ -48,12 +54,5 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
 
     private fun onError(error: Throwable) {
         _errorMessage.postValue(error.message)
-    }
-
-
-    override fun onCleared() {
-        super.onCleared()
-
-        disposables.clear()
     }
 }
