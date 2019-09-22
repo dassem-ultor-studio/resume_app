@@ -13,7 +13,7 @@ import kotlin.properties.Delegates
 
 class EmploymentAdapter : RecyclerView.Adapter<EmploymentAdapter.ViewHolder>() {
     var items: List<Employment> by Delegates.observable(emptyList()) { _, oldList, newList ->
-        autoNotify(oldList, newList) { o, n -> o.id == n.id }
+        autoNotify(oldList, newList) { old, new -> old.id == new.id }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
