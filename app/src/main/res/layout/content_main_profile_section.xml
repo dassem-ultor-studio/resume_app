@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/profile"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/margin_padding_medium"
                 style="@style/MontSerratBold.Large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -29,7 +29,7 @@
                 android:id="@+id/main_profileDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/text_margin"
+                android:padding="@dimen/margin_padding_medium"
                 style="@style/MontSerratRegular.Small"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
