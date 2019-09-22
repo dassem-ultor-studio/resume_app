@@ -3,6 +3,7 @@ package dassem.app.resume.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import dassem.app.resume.R
 import dassem.app.resume.extensions.autoNotify
@@ -32,7 +33,8 @@ class EmploymentAdapter : RecyclerView.Adapter<EmploymentAdapter.ViewHolder>() {
             itemView.employmentItem_date.text = employment.dates
             itemView.employmentItem_company.text = employment.company
             itemView.employmentItem_title.text = employment.jobTitle
-            itemView.employmentItem_responsibilities.text = employment.responsibilities
+            itemView.employmentItem_responsibilities.text =
+                HtmlCompat.fromHtml(employment.responsibilities, HtmlCompat.FROM_HTML_MODE_LEGACY)
         }
     }
 }
