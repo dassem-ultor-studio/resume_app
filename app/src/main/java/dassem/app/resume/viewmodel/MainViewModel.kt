@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dassem.app.resume.extensions.addTo
 import dassem.app.resume.network.ResumeService
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -38,7 +37,7 @@ class MainViewModel @Inject constructor(resumeService: ResumeService) : ViewMode
     }
 
     fun onEmailButtonClicked() {
-        _sendEmail.value = _resume.value?.email
+        _sendEmail.postValue(resume.value?.email)
     }
 
     private fun onSuccess(it: Resume) {
