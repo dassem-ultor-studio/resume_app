@@ -23,11 +23,11 @@ import javax.inject.Inject
 import android.content.Intent
 import android.net.Uri.fromParts
 import android.view.View
+import androidx.core.text.HtmlCompat
 import dassem.app.resume.R
 import dassem.app.resume.model.Resume
 import kotlinx.android.synthetic.main.content_scrolling.*
 import kotlinx.android.synthetic.main.main_header_layout.*
-
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -39,20 +39,25 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProviders.of(this, modelFactory)[MainViewModel::class.java]
         setContentView(R.layout.activity_scrolling)
 
-        main_emailButton.setOnClickListener {
-            viewModel.onEmailButtonClicked()
-        }
+        viewModel = ViewModelProviders.of(this, modelFactory)[MainViewModel::class.java]
+        addOnClickListener()
+        initRecyclerView()
+        addObservers()
+    }
 
+    private fun initRecyclerView() {
         main_employmentList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = employmentAdapter
         }
+    }
 
-        addObservers()
+    private fun addOnClickListener() {
+        main_emailButton.setOnClickListener {
+            viewModel.onEmailButtonClicked()
+        }
     }
 
     private fun addObservers() {
@@ -87,18 +92,17 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun addResumeDataObserver() {
-        viewModel.resume.observe(this, Observer {
-            loadHeaderSection(it)
+        viewModel.resume.observe(this, Observer { updateUI(it) })
+    }
 
-            main_profileDescription.text = it.profile
-            main_keyAchievementsDescription.text = it.keyAchievements
-
-            employmentAdapter.items = it.employment
-
-            loadEducationSection(it)
-
-            main_interestsDescription.text = it.interests
-        })
+    private fun updateUI(resume: Resume) {
+        loadHeaderSection(resume)
+        employmentAdapter.items = resume.employment
+        loadEducationSection(resume)
+        main_profileDescription.text = resume.profile
+        main_keyAchievementsDescription.text =
+            HtmlCompat.fromHtml(resume.keyAchievements, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        main_interestsDescription.text = resume.interests
     }
 
     private fun loadEducationSection(it: Resume) {
