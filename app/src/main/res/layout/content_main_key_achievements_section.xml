@@ -6,11 +6,11 @@
         android:id="@+id/main_keyAchievementsSection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_padding_medium"
+        android:animateLayoutChanges="true"
         app:layout_constraintTop_toBottomOf="@id/main_profileSection"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/margin_padding_medium"
-        android:animateLayoutChanges="true"
         tools:showIn="@layout/content_scrolling">
 
     <androidx.constraintlayout.widget.ConstraintLayout
