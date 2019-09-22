@@ -7,7 +7,9 @@
     <dimen name="margin_padding_large">32dp</dimen>
     <dimen name="margin_padding_large_plus">32dp</dimen>
     <dimen name="profile_image_size">180dp</dimen>
-    <dimen name="text_size_large">22sp</dimen>
-    <dimen name="text_size_small">16sp</dimen>
     <dimen name="drawable_padding">4dp</dimen>
+
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_small_plus">16sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
 </resources>
