@@ -23,37 +23,35 @@
             android:id="@+id/main_profileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="sans-serif-black"
             android:layout_marginStart="@dimen/margin_padding_medium"
             android:layout_marginTop="@dimen/margin_padding_large"
+            style="@style/MontSerratBold.Large.White"
             app:layout_constraintTop_toTopOf="@id/main_profileImage"
             app:layout_constraintStart_toEndOf="@id/main_profileImage"/>
 
     <TextView
             android:id="@+id/main_phoneNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:drawablePadding="@dimen/drawable_padding"
+            android:ellipsize="end"
             android:drawableStart="@drawable/ic_phone_white"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="sans-serif-black"
             android:layout_marginTop="@dimen/margin_padding_medium"
+            style="@style/MontSerratBold.SmallPlus.White"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_profileName"
             app:layout_constraintStart_toStartOf="@id/main_profileName"/>
 
     <TextView
             android:id="@+id/main_emailAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:drawablePadding="@dimen/drawable_padding"
+            android:ellipsize="end"
             android:drawableStart="@drawable/ic_email_white"
-            android:textColor="@color/colorWhite"
-            android:fontFamily="sans-serif-black"
             android:layout_marginTop="@dimen/margin_padding_small"
+            style="@style/MontSerratBold.SmallPlus.White"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_phoneNumber"
             app:layout_constraintStart_toStartOf="@id/main_profileName"/>
 

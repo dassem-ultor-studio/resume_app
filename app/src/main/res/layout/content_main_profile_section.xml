@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/profile"
                 android:layout_margin="@dimen/text_margin"
-                style="@style/SansSerifBlack.Large"
+                style="@style/MontSerratBold.Large"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -29,9 +29,8 @@
                 android:id="@+id/main_profileDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:fontFamily="sans-serif-condensed-medium"
                 android:padding="@dimen/text_margin"
+                style="@style/MontSerratRegular.Small"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/main_profileHeader"/>
