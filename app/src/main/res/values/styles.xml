@@ -14,12 +14,29 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="SansSerifBlack">
-        <item name="android:fontFamily">sans-serif-black</item>
+    <style name="MontSerratBold">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
     </style>
-
-    <style name="SansSerifBlack.Large">
+    <style name="MontSerratBold.SmallPlus">
+        <item name="android:textSize">@dimen/text_size_small_plus</item>
+    </style>
+    <style name="MontSerratBold.SmallPlus.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="MontSerratBold.Large">
         <item name="android:textSize">@dimen/text_size_large</item>
     </style>
+    <style name="MontSerratBold.Large.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 
+    <style name="MontSerratRegular">
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="MontSerratRegular.Small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="MontSerratRegular.SmallPlus">
+        <item name="android:textSize">@dimen/text_size_small_plus</item>
+    </style>
 </resources>
